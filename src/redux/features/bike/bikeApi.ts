@@ -8,9 +8,15 @@ const bikeApi = baseApi.injectEndpoints({
         method: "GET"
       }),
       providesTags: ["bikes"]
+    }),
+    getSingleBike : builder.query({
+      query: (id: string)=> ({
+        url:`/bikes/${id}`,
+        method:"GET"
+      })
     })
   })
 });
 
 
-export const {useGetAllBikeQuery} = bikeApi
+export const {useGetAllBikeQuery, useGetSingleBikeQuery} = bikeApi
