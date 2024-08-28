@@ -16,20 +16,20 @@ const BikeDetails = () => {
 
   return (
     <div className="mb-20">
-      <div className="bg-black rounded shadow-xl w-auto h-auto p-4 ">
-      <h1 className="font-bold text-3xl text-black mt-14 text-center">
+      <div className=" rounded shadow-xl w-auto h-auto p-4 ">
+      <h1 className="font-bold text-3xl  mt-14 text-center">
         {selectedBike.brand} Details
       </h1>
-        <p className="text-black">Name: {selectedBike.name}</p>
-        <p className="text-black">Description: {selectedBike.description}</p>
-        <p className="text-black">
+        <p className="">Name: {selectedBike.name}</p>
+        <p className="">Description: {selectedBike.description}</p>
+        <p className="">
           Price Per Hour: {selectedBike.pricePerHour}
         </p>
-        <p className="text-black">Availability: {selectedBike.isAvailable}</p>
-        <p className="text-black">CC: {selectedBike.cc}</p>
-        <p className="text-black">Year: {selectedBike.year}</p>
-        <p className="text-black">Brand: {selectedBike.brand}</p>
-        <p className="text-black">Model: {selectedBike.model}</p>
+        <p className="">Availability: {selectedBike.isAvailable}</p>
+        <p className="">CC: {selectedBike.cc}</p>
+        <p className="">Year: {selectedBike.year}</p>
+        <p className="">Brand: {selectedBike.brand}</p>
+        <p className="">Model: {selectedBike.model}</p>
 
         <button className="btn btn-secondary mt-4" onClick={handleClose}>
           Close

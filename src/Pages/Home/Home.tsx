@@ -1,6 +1,8 @@
 import Bikes from "../../components/bike/Bikes";
 import banner from "../../assets/images/bannar.jpg"
 import Reviews from "../../components/Reviews";
+import Benefits from "../../components/Benefits";
+import Coupon from "../../components/Coupon";
 
 
 
@@ -26,6 +28,8 @@ const Home = () => {
 </div>
 <Bikes/>
 <Reviews/>
+<Benefits/>
+<Coupon/>
 
 </>)
 };

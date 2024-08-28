@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png"
+import ThemeSwitcher from "../../components/ThemeSwitcher";
 const Navbar = () => {
   const navOptions = (
     <>
@@ -47,7 +48,8 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{navOptions}</ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Button</a>
+        <a className="btn"><ThemeSwitcher/></a>
+        {/* <a className="btn">Button</a> */}
       </div>
     </div>
   );

@@ -1,16 +1,21 @@
 import { Outlet, useLocation } from "react-router-dom";
-import Navbar from "../Pages/Shared/Navbar";
-import Footer from "../Pages/Shared/Footer";
+import Navbar from "../pages/Shared/Navbar";
+import Footer from "../pages/Shared/Footer";
+import { useAppSelector } from "../redux/hooks";
 
 const Main = () => {
     const location = useLocation();
+    const isDarkMode = useAppSelector((state) => state.theme.isDarkMode);
     
     const noHeaderFooter = location.pathname.includes('login') || location.pathname.includes('signup');
     return (
-        <div>
-            {noHeaderFooter || <Navbar/>}
+        <div className={isDarkMode ? 'dark' : ''}>
+
+           <div className="min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white">
+           {noHeaderFooter || <Navbar/>}
                 <Outlet/>
             {noHeaderFooter || <Footer/>}
+           </div>
         </div>
     );
 };
