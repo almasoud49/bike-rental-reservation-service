@@ -15,12 +15,9 @@ const BikeDetails = () => {
   };
 
   return (
-    <div className="my-10  mb-20">
-      {/* <h1 className="font-bold text-3xl text-black text-center">
-        {selectedBike.brand} Details
-      </h1> */}
-      <div className="bg-teal-50 shadow-xl w-auto h-auto p-4 ">
-      <h1 className="font-bold text-3xl text-black text-center">
+    <div className="mb-20">
+      <div className="bg-black rounded shadow-xl w-auto h-auto p-4 ">
+      <h1 className="font-bold text-3xl text-black mt-14 text-center">
         {selectedBike.brand} Details
       </h1>
         <p className="text-black">Name: {selectedBike.name}</p>

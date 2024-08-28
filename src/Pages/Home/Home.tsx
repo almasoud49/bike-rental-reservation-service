@@ -1,4 +1,6 @@
 import Bikes from "../../components/bike/Bikes";
+import banner from "../../assets/images/bannar.jpg"
+import Reviews from "../../components/Reviews";
 
 
 
@@ -8,9 +10,9 @@ const Home = () => {
 <div
   className="hero min-h-96 mb-10"
   style={{
-    backgroundImage: "url(https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp)",
+    backgroundImage: `url(${banner})`,
   }}>
-  <div className="hero-overlay bg-opacity-60 "></div>
+  <div className="hero-overlay bg-opacity-40 "></div>
   <div className="hero-content text-neutral-content text-center">
     <div className="max-w-md">
       <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
@@ -23,6 +25,7 @@ const Home = () => {
   </div>
 </div>
 <Bikes/>
+<Reviews/>
 
 </>)
 };

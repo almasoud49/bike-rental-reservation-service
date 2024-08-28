@@ -19,14 +19,14 @@ const AllBikes = () => {
       <h1 className="font-bold text-4xl text-white">Available Bikes</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
         {allBikes?.data?.map((bike: TBikeInitialState) => (
-          <div key={bike._id} className="bg-teal-50 shadow-xl w-auto h-60">
+          <div key={bike._id} className="bg-black rounded p-6 w-auto h-60">
             <div className="card-body">
               <h2 className="card-title text-black">{bike.brand}</h2>
               <p className="text-black">{bike.cc}</p>
               <div className="card-actions">
               <Link to={`/bike-details/${bike._id}`}>
                   <button
-                    className="btn btn-primary text-xl mx-auto my-auto"
+                    className="btn bg-custom-teal text-xl mx-auto my-auto"
                     onClick={() => handleViewDetail(bike)}
                   >
                     View Detail
