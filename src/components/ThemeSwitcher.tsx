@@ -1,5 +1,8 @@
 import { toggleTheme } from "../redux/features/theme/themeSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { FaToggleOn ,FaToggleOff  } from "react-icons/fa6";
+
+
 
 const ThemeSwitcher = () => {
   const dispatch = useAppDispatch();
@@ -16,7 +19,7 @@ const ThemeSwitcher = () => {
         isDarkMode ? "bg-gray-800 text-white" : "bg-gray-200 text-black"
       }`}
     >
-      Toggle {isDarkMode ? "Light" : "Dark"} Mode
+      {isDarkMode ? <FaToggleOn /> : <FaToggleOff />} 
     </button>
   );
 };

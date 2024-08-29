@@ -4,7 +4,7 @@ import "react-spin-wheel/dist/index.css";
 const Coupon = () => {
   return (
     <>
-        <h1>Coupons & Discounts</h1>
+        <h1 className="text-4xl text-center py-6 font-bold">Coupons & Discounts</h1>
       <SpinWheel
         items={[
           "5% for 10 hours",
