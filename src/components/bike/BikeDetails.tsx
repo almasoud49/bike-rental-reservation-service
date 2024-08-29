@@ -37,7 +37,7 @@ const BikeDetails = () => {
         <p className="">Brand: {selectedBike.brand}</p>
         <p className="">Model: {selectedBike.model}</p>
 
-        <button className="btn btn-secondary mt-4" onClick={handleClose}>
+        <button className="btn btn-outline btn-secondary mt-4" onClick={handleClose}>
           Close
         </button>
       </div>
