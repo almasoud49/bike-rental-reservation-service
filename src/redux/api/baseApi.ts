@@ -1,11 +1,23 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { config } from "../../config";
+import { RootState } from "../store";
+
 
 export const baseApi = createApi({
   reducerPath: "baseApi",
+  tagTypes: ["user","bike", "rental" ,"team"],
   baseQuery: fetchBaseQuery({
-    baseUrl: `${config.server_url}/api`,
+    baseUrl: "https://bike-rental-reservation-system-backend-six.vercel.app/api",
+    credentials: "include",
+    prepareHeaders: (headers, { getState }) => {
+      const token = (getState() as RootState).auth.token;
+
+            if (token) {
+        headers.set("authorization", `Bearer ${token}`);
+      }
+
+      return headers;
+    },
   }),
-  tagTypes: ["bikes", "rental" ,"teams"],
+  
   endpoints: () => ({}),
 });
