@@ -10,15 +10,34 @@ export const bikeApi = baseApi.injectEndpoints({
         body: data,
       }),
     }),
+    // getAllBikes: builder.query({
+    //   providesTags: ["bike"],
+    //   query: (args) => {
+    //    const params = new URLSearchParams();
+    //     args?.map((arg: { name: string; value: string }) =>
+    //       params.append(arg.name, arg.value)
+    //     );
+
+    //     return {
+    //       url: "/bikes",
+    //       method: "GET",
+    //       params,
+    //     };
+    //   },
+    // }),
+    //2//
     getAllBikes: builder.query({
       providesTags: ["bike"],
       query: (args) => {
-        // add query params
         const params = new URLSearchParams();
-        args?.map((arg: { name: string; value: string }) =>
-          params.append(arg.name, arg.value)
-        );
-
+    
+        // Check if args is an array before using map
+        if (Array.isArray(args)) {
+          args.map((arg: { name: string; value: string }) =>
+            params.append(arg.name, arg.value)
+          );
+        } 
+    
         return {
           url: "/bikes",
           method: "GET",
@@ -26,6 +45,7 @@ export const bikeApi = baseApi.injectEndpoints({
         };
       },
     }),
+    
     getSingleBike: builder.query({
       providesTags: ["bike"],
       query: (bikeId) => ({

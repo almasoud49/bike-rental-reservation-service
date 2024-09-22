@@ -1,21 +1,26 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { Link } from 'react-router-dom';
-import { useSignupMutation } from '../../redux/features/auth/authApi';
+import { Link, useNavigate } from 'react-router-dom';
+
 import { TSignUpFormInputs } from '../../types/signUp.type';
+import { useSignUpMutation } from '../../redux/api/auth/authApi';
+import { useAppDispatch } from '../../redux/hooks';
+import { logOut } from '../../redux/features/authSlice';
+import handleMutation from '../../utils/handleMutation';
 
 
 const SignUpForm = () => {
   const { register, handleSubmit, formState: { errors } } = useForm<TSignUpFormInputs>();
-  const [signup, { isLoading, isSuccess }] = useSignupMutation();
+  const [signUp] = useSignUpMutation();
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const onSuccess = () => {
+    dispatch(logOut());
+    return navigate("/", { replace: true });
+  };
 
   const onSubmit: SubmitHandler<TSignUpFormInputs> = (data) => {
-    signup(data).unwrap()
-      .then(() => {
-        
-      })
-      .catch((err) => {
-        console.log(err)
-      });
+    handleMutation(data, signUp, "User is being created...", onSuccess)
   };
 
   return (
@@ -73,12 +78,12 @@ const SignUpForm = () => {
             />
             {errors.address && <span className="text-red-500">{errors.address.message}</span>}
           </div>
-          <button type="submit" className="btn bg-custom-teal w-full mt-4" disabled={isLoading}>Sign Up</button>
+          <button type="submit" className="btn bg-custom-teal w-full mt-4" >Sign Up</button>
         </form>
         <p className="text-center mt-4 ">
           Already have an account? <Link to="/login" className="text-primary">Please login</Link>
         </p>
-        {isSuccess && <p className="text-green-500 mt-4">Sign up successful!</p>}
+        {/* {isSuccess && <p className="text-green-500 mt-4">Sign up successful!</p>} */}
         
       </div>
     </div>

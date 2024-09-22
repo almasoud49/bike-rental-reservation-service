@@ -6,7 +6,7 @@ export const baseApi = createApi({
   reducerPath: "baseApi",
   tagTypes: ["user","bike", "rental" ,"team"],
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://bike-rental-reservation-system-backend-six.vercel.app/api",
+    baseUrl: "http://localhost:5000/api",
     credentials: "include",
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as RootState).auth.token;

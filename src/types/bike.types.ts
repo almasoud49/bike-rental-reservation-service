@@ -1,14 +1,15 @@
 
-export type TBikeInitialState = {
-  _id?: string;
-  image: string;
+export type TBike = {
+  _id: string;
   name: string;
+  image: string;
   description: string;
   pricePerHour: number;
-  isAvailable:boolean;
+  isAvailable: boolean;
   cc: number;
   year: number;
-  model:string;
-  brand:string
+  model: string;
+  brand: string;
 }
+
 
