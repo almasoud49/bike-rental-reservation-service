@@ -1,18 +1,14 @@
-import { TBike } from "../../types/bike.types";
-
-
 import { useGetAllBikesQuery } from "../../redux/api/bikeApi";
-// import ProductCard from "../ui/ProductCard";
+import { TBike } from "../../types/bike.types";
+import BNoData from "../ui/BNoData";
+import BSpinner from "../ui/BSpinner";
+import BikeCard from "./BikeCard";
 
 
-const AllBikes = () => {
-  // const dispatch = useAppDispatch();
-  const { data } = useGetAllBikesQuery("");
-  console.log(data?.data)
 
-  // const handleViewDetail = (bike: TBike) => {
-  //   dispatch(setSelectedBike(bike));
-  // };
+const Bikes = () => {
+  const { data, isFetching } = useGetAllBikesQuery(undefined);
+  console.log(data?.data?.result)
 
   return (
     // <div className="my-10">
@@ -46,23 +42,28 @@ const AllBikes = () => {
     
     //2//
     <div className="lg:py-24 md:py-20 py-16">
+      <h1 className="font-bold text-center py-6 text-4xl">Available Bikes</h1>
       <div>
-        {/* {
-           data?.data?.result && (
+      {isFetching ? (
+            <BSpinner />
+          ) : data?.data?.result?.length ? (
             <div className="grid lg:grid-cols-3 sm:grid-cols-2 md:gap-7 gap-5">
-              {data?.data?.result
-                ?.slice(0, 6)
+              {data?.data?.result                
                 ?.map((item: TBike, idx: number) => (
-                  <div key={idx}> <ProductCard details={item}/></div>
+                  <div key={idx}>
+                    <BikeCard details={item} />
+                  </div>
                 ))}
             </div>
-           )} */}
+          ) : (
+            <BNoData />
+          )}
       </div>
     </div>
   );
 };
 
-export default AllBikes;
+export default Bikes;
 
 
 
