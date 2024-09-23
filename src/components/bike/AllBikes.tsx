@@ -6,7 +6,7 @@ import BikeCard from "./BikeCard";
 
 
 
-const Bikes = () => {
+const AllBikes = () => {
   const { data, isFetching } = useGetAllBikesQuery(undefined);
   console.log(data?.data?.result)
 
@@ -34,7 +34,7 @@ const Bikes = () => {
   );
 };
 
-export default Bikes;
+export default AllBikes;
 
 
 

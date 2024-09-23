@@ -2,24 +2,21 @@ import { Outlet } from "react-router-dom";
 import Navbar from "../pages/Shared/Navbar";
 import Footer from "../pages/Shared/Footer";
 import { useAppSelector } from "../redux/hooks";
+import { useGetCurrentMode } from "../redux/features/themeSlice";
 
 const Main = () => {
-   
-    const isDarkMode = useAppSelector((state) => state.theme.mode);
-    
-    
-    return (
-        <div className={isDarkMode ? 'dark' : ''}>
+  const mode = useAppSelector(useGetCurrentMode);
 
-           <div className="min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white">
-           
-           <Navbar/>
-                <Outlet/>
-            
-            <Footer/>
-           </div>
-        </div>
-    );
+  return (
+    <div className={`${mode || "light"} bg-white dark:bg-primaryColor`}>
+      <div>
+        <Navbar />
+        <Outlet />
+
+        <Footer />
+      </div>
+    </div>
+  );
 };
 
 export default Main;

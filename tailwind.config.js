@@ -7,13 +7,14 @@ export default {
   ],
   theme: {
     extend: {
-      colors:{
-        'custom-blue': '#0086c0',
-        'custom-green': '#10B981',
-        'custom-red': '#EF4444',
-        'custom-teal': '#00848f',
-        'custom-gray': '#1a1c1d',
-      }
+      colors: {
+        primaryColor: "#1B263B",
+        accentColor: "#F39C12",
+        secondaryColor: "#BDC3C7",
+        lightAccentColor: "#fef5e7",
+        darkPrimary: "#181002",
+        lightBorder: "#4d4d4d",
+      },
     },
   },
   plugins: [

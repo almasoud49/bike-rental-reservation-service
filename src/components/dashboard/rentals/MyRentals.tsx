@@ -31,7 +31,7 @@ const MyRentals = () => {
     toast.success("🎉 Rental Confirmed!");
     setTimeout(() => {
       window.location.replace(
-        "https://rideflow-fawn.vercel.app/dashboard/user/my-rentals"
+        "http://localhost:5173/dashboard/user/my-rentals"
       );
     }, 1200);
   }

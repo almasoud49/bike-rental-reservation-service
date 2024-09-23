@@ -23,7 +23,7 @@ export const rentalApi = baseApi.injectEndpoints({
     getRentals: builder.query({
       providesTags: ["rental"],
       query: (args) => {
-        // add query params
+       
         const params = new URLSearchParams();
         args?.map((arg: { name: string; value: string }) =>
           params.append(arg.name, arg.value)
