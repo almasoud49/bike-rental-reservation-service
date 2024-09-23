@@ -1,93 +1,167 @@
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+// import { useForm, SubmitHandler } from 'react-hook-form';
+// import { Link, useNavigate } from 'react-router-dom';
+// import { TSignUpFormInputs } from '../../types/signUp.type';
+// import { useSignUpMutation } from '../../redux/api/auth/authApi';
+// import { useAppDispatch } from '../../redux/hooks';
+// import { logOut } from '../../redux/features/authSlice';
+// import handleMutation from '../../utils/handleMutation';
 
-import { TSignUpFormInputs } from '../../types/signUp.type';
-import { useSignUpMutation } from '../../redux/api/auth/authApi';
-import { useAppDispatch } from '../../redux/hooks';
-import { logOut } from '../../redux/features/authSlice';
-import handleMutation from '../../utils/handleMutation';
+
+// const SignUpForm = () => {
+//   const { register, handleSubmit, formState: { errors } } = useForm<TSignUpFormInputs>();
+//   const [signUp] = useSignUpMutation();
+//   const navigate = useNavigate();
+//   const dispatch = useAppDispatch();
+
+//   const onSuccess = () => {
+//     dispatch(logOut());
+//     return navigate("/", { replace: true });
+//   };
+
+//   const onSubmit: SubmitHandler<TSignUpFormInputs> = (data) => {
+//     handleMutation(data, signUp, "User is being created...", onSuccess)
+//   };
+
+//   return (
+//     <div className="flex justify-center items-center pt-10 ">
+//       <div className="card w-full max-w-md shadow-2xl p-5">
+//         <h2 className="text-3xl font-bold text-center mb-5 my-14">Sign Up</h2>
+//         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+//           <div className="form-control">
+//             <label className="label" htmlFor="name">Name</label>
+//             <input
+//               id="name"
+//               type="text"
+//               className="input input-bordered w-full"
+//               {...register('name', { required: 'Name is required' })}
+//             />
+//             {errors.name && <span className="text-red-500">{errors.name.message}</span>}
+//           </div>
+//           <div className="form-control">
+//             <label className="label" htmlFor="email">Email</label>
+//             <input
+//               id="email"
+//               type="email"
+//               className="input input-bordered w-full"
+//               {...register('email', { required: 'Email is required' })}
+//             />
+//             {errors.email && <span className="text-red-500">{errors.email.message}</span>}
+//           </div>
+//           <div className="form-control">
+//             <label className="label" htmlFor="password">Password</label>
+//             <input
+//               id="password"
+//               type="password"
+//               className="input input-bordered w-full"
+//               {...register('password', { required: 'Password is required' })}
+//             />
+//             {errors.password && <span className="text-red-500">{errors.password.message}</span>}
+//           </div>
+//           <div className="form-control">
+//             <label className="label" htmlFor="phone">Phone</label>
+//             <input
+//               id="phone"
+//               type="tel"
+//               className="input input-bordered w-full"
+//               {...register('phone', { required: 'Phone number is required' })}
+//             />
+//             {errors.phone && <span className="text-red-500">{errors.phone.message}</span>}
+//           </div>
+//           <div className="form-control">
+//             <label className="label" htmlFor="address">Address</label>
+//             <input
+//               id="address"
+//               type="text"
+//               className="input input-bordered w-full"
+//               {...register('address', { required: 'Address is required' })}
+//             />
+//             {errors.address && <span className="text-red-500">{errors.address.message}</span>}
+//           </div>
+//           <button type="submit" className="btn bg-custom-teal w-full mt-4" >Sign Up</button>
+//         </form>
+//         <p className="text-center mt-4 ">
+//           Already have an account? <Link to="/login" className="text-primary">Please login</Link>
+//         </p>
+//         {/* {isSuccess && <p className="text-green-500 mt-4">Sign up successful!</p>} */}
+        
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default SignUpForm;
 
 
-const SignUpForm = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm<TSignUpFormInputs>();
+import { FieldValues, SubmitHandler } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
+import { useSignUpMutation } from "../../redux/api/auth/authApi";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useAppDispatch } from "../../redux/hooks";
+import { logOut } from "../../redux/features/authSlice";
+import handleMutation from "../../utils/handleMutation";
+import BForm from "../../components/form/BForm";
+import BInput from "../../components/form/BInput";
+import BButtonSmall from "../../components/ui/BButtonSmall";
+import { signValidationSchema } from "../../validation/signup.validation";
+
+
+
+const SignUp = () => {
   const [signUp] = useSignUpMutation();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const onSuccess = () => {
     dispatch(logOut());
-    return navigate("/", { replace: true });
+    return navigate("/sign-up-success", { replace: true });
   };
-
-  const onSubmit: SubmitHandler<TSignUpFormInputs> = (data) => {
-    handleMutation(data, signUp, "User is being created...", onSuccess)
+  const handleFormSubmit: SubmitHandler<FieldValues> = async (data) => {
+    handleMutation(data, signUp, "User is being created...", onSuccess);
   };
 
   return (
-    <div className="flex justify-center items-center pt-10 ">
-      <div className="card w-full max-w-md shadow-2xl p-5">
-        <h2 className="text-3xl font-bold text-center mb-5 my-14">Sign Up</h2>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          <div className="form-control">
-            <label className="label" htmlFor="name">Name</label>
-            <input
-              id="name"
-              type="text"
-              className="input input-bordered w-full"
-              {...register('name', { required: 'Name is required' })}
+    <div className="md:py-24 py-16">
+
+      
+        <div className="md:w-[600px] mx-auto">
+          <BForm
+            resolver={zodResolver(signValidationSchema)}
+            handleFormSubmit={handleFormSubmit}
+          >
+            <BInput label="Name" name="name" placeholder="enter your name" />
+            <BInput label="Email" name="email" placeholder="enter your email" />
+            <BInput
+              label="Phone"
+              name="phone"
+              placeholder="enter your phone number"
             />
-            {errors.name && <span className="text-red-500">{errors.name.message}</span>}
-          </div>
-          <div className="form-control">
-            <label className="label" htmlFor="email">Email</label>
-            <input
-              id="email"
-              type="email"
-              className="input input-bordered w-full"
-              {...register('email', { required: 'Email is required' })}
+            <BInput
+              label="Password"
+              name="password"
+              placeholder="enter a password"
             />
-            {errors.email && <span className="text-red-500">{errors.email.message}</span>}
-          </div>
-          <div className="form-control">
-            <label className="label" htmlFor="password">Password</label>
-            <input
-              id="password"
-              type="password"
-              className="input input-bordered w-full"
-              {...register('password', { required: 'Password is required' })}
+            <BInput
+              label="Address"
+              name="address"
+              placeholder="enter your address"
             />
-            {errors.password && <span className="text-red-500">{errors.password.message}</span>}
+            <BButtonSmall type="submit">Submit</BButtonSmall>
+          </BForm>
+          <div className="mt-6">
+            <p>
+              Already have an account?{" "}
+              <Link
+                className="underline font-medium hover:text-accentColor duration-200"
+                to={"/login"}
+              >
+                Login
+              </Link>
+            </p>
           </div>
-          <div className="form-control">
-            <label className="label" htmlFor="phone">Phone</label>
-            <input
-              id="phone"
-              type="tel"
-              className="input input-bordered w-full"
-              {...register('phone', { required: 'Phone number is required' })}
-            />
-            {errors.phone && <span className="text-red-500">{errors.phone.message}</span>}
-          </div>
-          <div className="form-control">
-            <label className="label" htmlFor="address">Address</label>
-            <input
-              id="address"
-              type="text"
-              className="input input-bordered w-full"
-              {...register('address', { required: 'Address is required' })}
-            />
-            {errors.address && <span className="text-red-500">{errors.address.message}</span>}
-          </div>
-          <button type="submit" className="btn bg-custom-teal w-full mt-4" >Sign Up</button>
-        </form>
-        <p className="text-center mt-4 ">
-          Already have an account? <Link to="/login" className="text-primary">Please login</Link>
-        </p>
-        {/* {isSuccess && <p className="text-green-500 mt-4">Sign up successful!</p>} */}
-        
-      </div>
+        </div>
+      
     </div>
   );
 };
 
-export default SignUpForm;
+export default SignUp;
