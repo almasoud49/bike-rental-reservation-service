@@ -28,14 +28,7 @@ const MyRentals = () => {
     { pollingInterval: 2000 } // Default polling interval
   );
 
-  // Adjust polling interval based on error state
-  useEffect(() => {
-    if (isError) {
-      // Handle error state, e.g., show a toast or set a flag
-      console.error("Error fetching rentals");
-    }
-  }, [isError]);
-
+  // Handle booking confirmation and URL management
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     if (searchParams.get("booking") === "confirmed") {
@@ -52,6 +45,15 @@ const MyRentals = () => {
       }, 1200);
     }
   }, [location.search]);
+
+  // Handle error state
+  useEffect(() => {
+    if (isError) {
+      console.error("Error fetching rentals");
+      // Optionally, you can show an error toast or handle the error more gracefully
+      toast.error("Failed to load rentals. Please try again later.");
+    }
+  }, [isError]);
 
   // const { data, isLoading } = useGetRentalsQuery(
   //   [{ name: "myRentals", value: true }],
