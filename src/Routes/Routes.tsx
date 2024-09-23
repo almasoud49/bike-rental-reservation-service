@@ -10,6 +10,7 @@ import { userRoutes } from "./UserRoutes";
 import SignUp from "../pages/Signup/SignUpForm";
 import ProtectedRoute from "./ProtectedRoute";
 import SignUpSuccess from "../pages/Signup/SignUpSuccess";
+import { adminRoutes } from "./AdminRoutes";
 
 
 export const router = createBrowserRouter([
@@ -50,7 +51,8 @@ export const router = createBrowserRouter([
         path: "/dashboard/admin",
         element:(<ProtectedRoute role="admin">
             <Dashboard/>
-        </ProtectedRoute>)
+        </ProtectedRoute>),
+        children: adminRoutes,
     },
     {
         path: "signup",
