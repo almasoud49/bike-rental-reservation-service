@@ -8,6 +8,7 @@ export const baseApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "https://bike-rental-reservation-system-backend-six.vercel.app/api",
     credentials: "include",
+    mode: 'cors', 
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as RootState).auth.token;
 
