@@ -8,7 +8,7 @@ const teamApi = baseApi.injectEndpoints({
         url: "/teams",
         method: "GET"
       }),
-      providesTags: ["teams"]
+      providesTags: ["team"]
     }),
  
   })
