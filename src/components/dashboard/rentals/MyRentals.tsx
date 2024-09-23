@@ -27,22 +27,14 @@ const MyRentals = () => {
     { pollingInterval: 2000 }
   );
 
-  // if (location?.search === "?booking=confirmed") {
-  //   toast.success("🎉 Rental Confirmed!");
-  //   setTimeout(() => {
-  //     window.location.replace(
-  //       "https://bike-rent-reservation-system.netlify.app/dashboard/user/my-rentals"
-  //     );
-  //   }, 1200);
-  // }
-
   if (location?.search === "?booking=confirmed") {
     toast.success("🎉 Rental Confirmed!");
     setTimeout(() => {
-      window.location.replace("/dashboard/user/my-rentals");
+      window.location.replace(
+        "https://bike-rent-reservation-system.netlify.app/dashboard/user/my-rentals"
+      );
     }, 1200);
   }
-
   const paidData = data?.data?.result?.filter(
     (item: TRental) => item.isPaid === true
   );
