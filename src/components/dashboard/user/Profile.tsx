@@ -1,12 +1,12 @@
 import { Divider } from "antd";
 import moment from "moment";
 import { useState } from "react";
-import profileImage from "@/assets/images/profile.jpg";
 import { useGetMyProfileQuery } from "../../../redux/api/auth/authApi";
 import BSpinner from "../../ui/BSpinner";
 import BNoData from "../../ui/BNoData";
 import BButtonSmallWhite from "../../ui/BButtonSmallWhite";
 import UpdateProfileModal from "./UpdateProfileModal";
+import profileImage from "../../../assets/user.jpg"; 
 
 
 const Profile = () => {
