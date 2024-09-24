@@ -2,7 +2,10 @@ import { Table, Tabs, TabsProps } from "antd";
 import { useLocation } from "react-router-dom";
 import { toast } from "sonner";
 import { TBike } from "../../../types/bike.types";
-import { useGetRentalsQuery, useMakePaymentMutation } from "../../../redux/api/rentalApi";
+import {
+  useGetRentalsQuery,
+  useMakePaymentMutation,
+} from "../../../redux/api/rentalApi";
 import DashboardSectionTitle from "../../form/DashboardSectionTitle";
 import { useGetMyProfileQuery } from "../../../redux/api/auth/authApi";
 import { TUser } from "../../../types/user.type";
@@ -10,7 +13,6 @@ import handleMutation from "../../../utils/handleMutation";
 import BButtonSmall from "../../ui/BButtonSmall";
 import { TResponse } from "../../../types/global.type";
 import { TRental } from "../../../types/rental.type";
-
 
 export type TTableProps = {
   startTime: string;
@@ -23,8 +25,6 @@ export type TTableProps = {
 const MyRentals = () => {
   const location = useLocation();
 
-
-
   const { data, isLoading } = useGetRentalsQuery(
     [{ name: "myRentals", value: true }],
     { pollingInterval: 2000 }
@@ -34,10 +34,9 @@ const MyRentals = () => {
     toast.success("🎉 Rental Confirmed!");
     setTimeout(() => {
       window.location.replace(
-        "http://localhost:5173/dashboard/user/my-rentals"
+        "https://bike-rent-reservation-system.netlify.app/dashboard/user/my-rentals"
       );
     }, 1200);
-
   }
   const paidData = data?.data?.result?.filter(
     (item: TRental) => item.isPaid === true

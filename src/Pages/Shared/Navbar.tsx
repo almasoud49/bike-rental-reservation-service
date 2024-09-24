@@ -101,7 +101,7 @@ const Navbar = () =>{
   };
 
   return (
-    <header className="fixed navbar top-0 left-0 w-full z-10 bg-custom-blue py-5 px-10">
+    <header className="fixed navbar top-0 left-0 w-full z-10  py-5 px-10">
       
         <div className="grid lg:grid-cols-5 grid-cols-2 gap-8 items-center justify-between">
           <div className="col-span-1">
@@ -111,7 +111,7 @@ const Navbar = () =>{
             </Link>
           </div>
           <div className="col-span-3 mt-2 lg:block hidden">
-            <ul className="flex items-center gap-12 justify-center text-white">
+            <ul className="flex items-center gap-12 justify-center text-blue">
               {menuItems.map((item) => (
                 <li
                   key={item.label}
