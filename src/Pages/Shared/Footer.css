@@ -1,0 +1,14 @@
+.footer a {
+    text-decoration: none; 
+    color: inherit; 
+  }
+  
+  .footer a:hover {
+    text-decoration: underline; 
+    color: #007bff; /
+
+    .spin-wheel-container * {
+        color: inherit !important; 
+        text-decoration: none !important; 
+      }
+  }

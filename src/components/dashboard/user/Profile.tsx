@@ -49,7 +49,7 @@ const Profile = () => {
                       <img
                         className="lg:w-[50%] md:w-[40%] w-[70px] mx-auto rounded-full"
                         src={
-                          "https://img.freepik.com/premium-photo/banner-lead-generation_1139417-135284.jpg?uid=R110269680&ga=GA1.1.1274571054.1719930293&semt=ais_hybrid"
+                          "https://img.freepik.com/free-photo/portrait-hapy-young-smart-man-glasses-white-wall_231208-12206.jpg?t=st=1727148038~exp=1727151638~hmac=a1409074ca38354fd06013ee431ea11344089c70265aab57df30ce2968bc4b4b&w=360"
                         }
                         alt=""
                       />

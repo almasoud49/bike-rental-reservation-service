@@ -10,7 +10,7 @@ import handleMutation from "../../../utils/handleMutation";
 import BButtonSmall from "../../ui/BButtonSmall";
 import { TResponse } from "../../../types/global.type";
 import { TRental } from "../../../types/rental.type";
-import { useEffect } from "react";
+
 
 export type TTableProps = {
   startTime: string;
@@ -23,51 +23,22 @@ export type TTableProps = {
 const MyRentals = () => {
   const location = useLocation();
 
-  const { data, isLoading, isError } = useGetRentalsQuery(
+
+
+  const { data, isLoading } = useGetRentalsQuery(
     [{ name: "myRentals", value: true }],
-    { pollingInterval: 2000 } // Default polling interval
+    { pollingInterval: 2000 }
   );
 
-  // Handle booking confirmation and URL management
-  useEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
-    if (searchParams.get("booking") === "confirmed") {
-      toast.success("🎉 Rental Confirmed!");
+  if (location?.search === "?booking=confirmed") {
+    toast.success("🎉 Rental Confirmed!");
+    setTimeout(() => {
+      window.location.replace(
+        "http://localhost:5173/dashboard/user/my-rentals"
+      );
+    }, 1200);
 
-      // Remove the query param to avoid redirect loop
-      searchParams.delete("booking");
-      const newUrl = `${window.location.origin}${window.location.pathname}?${searchParams.toString()}`;
-      window.history.replaceState(null, '', newUrl);
-
-      // Optionally, redirect after a slight delay
-      setTimeout(() => {
-        window.location.replace(newUrl);
-      }, 1200);
-    }
-  }, [location.search]);
-
-  // Handle error state
-  useEffect(() => {
-    if (isError) {
-      console.error("Error fetching rentals");
-      // Optionally, you can show an error toast or handle the error more gracefully
-      toast.error("Failed to load rentals. Please try again later.");
-    }
-  }, [isError]);
-
-  // const { data, isLoading } = useGetRentalsQuery(
-  //   [{ name: "myRentals", value: true }],
-  //   { pollingInterval: 2000 }
-  // );
-
-  // if (location?.search === "?booking=confirmed") {
-  //   toast.success("🎉 Rental Confirmed!");
-  //   setTimeout(() => {
-  //     window.location.replace(
-  //       "https://bike-rent-reservation-system.netlify.app/dashboard/user/my-rentals"
-  //     );
-  //   }, 1200);
-  // }
+  }
   const paidData = data?.data?.result?.filter(
     (item: TRental) => item.isPaid === true
   );

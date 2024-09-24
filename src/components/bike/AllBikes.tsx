@@ -8,8 +8,7 @@ import BikeCard from "./BikeCard";
 
 const AllBikes = () => {
   const { data, isFetching } = useGetAllBikesQuery(undefined);
-  console.log(data?.data?.result)
-
+  
   return (
  
     <div className="lg:py-5 md:py-20 py-16">

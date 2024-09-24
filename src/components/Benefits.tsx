@@ -1,25 +1,42 @@
-import { useGetAllBenefitsQuery } from "../redux/features/benifit/benefitApi";
+import { useGetAllBenefitsQuery } from "../redux/api/benefitApi";
+import { Card, Col, Row, Typography, Spin } from "antd";
 import { TBenefitData } from "../types/benefit.types";
+
+const { Title } = Typography;
 
 const Benefits = () => {
   const { data: allBenefits, isLoading } = useGetAllBenefitsQuery("");
 
-  console.log(allBenefits);
-  console.log(isLoading);
+  if (isLoading) {
+    return (
+      <div style={{ textAlign: 'center', marginTop: '50px' }}>
+        <Spin size="large" />
+      </div>
+    );
+  }
 
   return (
-    <div className="my-10">
-      <h1 className="font-bold text-4xl text-center py-6 ">Why Choose Us</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6  ">
+    <div style={{ margin: '40px 0' }}>
+      <Title level={1} style={{ textAlign: 'center', marginBottom: '24px' }}>
+        Why Choose Us
+      </Title>
+      <Row gutter={[16, 16]}>
         {allBenefits?.data?.map((benefit: TBenefitData) => (
-          <div key={benefit._id} className="bg-gray-100 rounded p-6 w-auto shadow-2xl h-60">
-            <div className="card-body">
-              <h2 className="text-black">{benefit.title}</h2>
-              <p className="flex-grow text-black">{benefit.description}</p>
-            </div>
-          </div>
+          <Col key={benefit._id} xs={24} sm={12} lg={8}>
+            <Card
+              title={benefit.title}
+              bordered={false}
+              style={{
+                background: '#f0f0f0',
+                height: '240px',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
+              }}
+            >
+              <p>{benefit.description}</p>
+            </Card>
+          </Col>
         ))}
-      </div>
+      </Row>
     </div>
   );
 };

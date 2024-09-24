@@ -36,7 +36,7 @@ const SignUp = () => {
             handleFormSubmit={handleFormSubmit}
           >
             <BInput label="Name" name="name" placeholder="enter your name" />
-            <BInput label="Email" name="email" placeholder="enter your email" />
+            <BInput label="Email" name="email" placeholder="enter your email" type="email" />
             <BInput
               label="Phone"
               name="phone"
@@ -46,6 +46,7 @@ const SignUp = () => {
               label="Password"
               name="password"
               placeholder="enter a password"
+              type="password"
             />
             <BInput
               label="Address"

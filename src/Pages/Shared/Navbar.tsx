@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-// import logo from "../../assets/logo.png"
+import logo from "../../assets/logo.png"
 
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { changeTheme, useGetCurrentMode } from "../../redux/features/themeSlice";
@@ -10,62 +10,8 @@ import { Drawer, Dropdown, MenuProps } from "antd";
 import { CircleUserRound, ListCheckIcon,Menu, LogOut, Moon, SunMoon, User } from "lucide-react";
 import BButtonSmall from "../../components/ui/BButtonSmall";
 import BButtonSmallWhite from "../../components/ui/BButtonSmallWhite";
-// const Navbar = () => {
-//   const navOptions = (
-//     <>
-//       <li>
-//         <Link to="/">Home</Link>
-//       </li>
-//       <li>
-//         <Link to="/about-us">About Us</Link>
-//       </li>
-//       <li>
-//         <Link to="/login">Login</Link>
-//       </li>
-//       <li>
-//         <Link to="/sign-up">Login</Link>
-//       </li>
-//     </>
-//   );
-//   return (
-//     <div className="navbar fixed z-10 max-w-screen-xl bg-custom-blue  text-white">
-//       <div className="navbar-start ">
-//         <div className="dropdown ">
-//           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-//             <svg
-//               xmlns="http://www.w3.org/2000/svg"
-//               className="h-5 w-5"
-//               fill="none"
-//               viewBox="0 0 24 24"
-//               stroke="currentColor"
-//             >
-//               <path
-//                 strokeLinecap="round"
-//                 strokeLinejoin="round"
-//                 strokeWidth="2"
-//                 d="M4 6h16M4 12h8m-8 6h16"
-//               />
-//             </svg>
-//           </div>
-//           <ul
-//             tabIndex={0}
-//             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-//           >
-//             {navOptions}
-//           </ul>
-//         </div>
-//         <Link to="/" className="btn btn-ghost text-xl"><img src={logo} height={50} width={50} alt="" /></Link>
-//       </div>
-//       <div className="navbar-center hidden lg:flex">
-//         <ul className="menu menu-horizontal px-1">{navOptions}</ul>
-//       </div>
-//       <div className="navbar-end">
-//         <a className="btn w-28"><ThemeSwitcher/></a>
-//         {/* <a className="btn">Button</a> */}
-//       </div>
-//     </div>
-//   );
-// };
+import "./Navbar.css"
+
 
 const menuItems = [
   {
@@ -73,17 +19,14 @@ const menuItems = [
     link: "/",
   },
   {
-    label: "about",
-    link: "/about",
+    label: "About",
+    link: "/about-us",
   },
   {
     label: "blogs",
     link: "/",
-  },
-  {
-    label: "contact",
-    link: "/",
-  },
+  }
+  
 ];
 
 const Navbar = () =>{
@@ -119,9 +62,10 @@ const Navbar = () =>{
       ),
       key: "0",
     },
+   
     {
       label: (
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2" >
           <ListCheckIcon size={14} />
           <Link
             to={
@@ -157,14 +101,13 @@ const Navbar = () =>{
   };
 
   return (
-    <header className="md:py-6 py-5 absolute top-0 left-0 w-full z-30 myHeader">
+    <header className="fixed navbar top-0 left-0 w-full z-10 bg-custom-blue py-5 px-10">
       
         <div className="grid lg:grid-cols-5 grid-cols-2 gap-8 items-center justify-between">
           <div className="col-span-1">
             <Link className="inline-block" to={"/"}>
-              <h3 className="md:text-3xl text-2xl font-bold uppercase text-white">
-                <span className="text-accentColor">Ride</span>flow
-              </h3>
+            <img src={logo} alt="logo" height={50} width={50} />
+              
             </Link>
           </div>
           <div className="col-span-3 mt-2 lg:block hidden">
@@ -172,7 +115,7 @@ const Navbar = () =>{
               {menuItems.map((item) => (
                 <li
                   key={item.label}
-                  className="capitalize font-medium hover:text-accentColor duration-300 border-b-2 hover:border-b-2 cursor-pointer border-accentColor pb-2 border-opacity-0 hover:border-opacity-100 hover:pb-1"
+                  className="capitalize font-medium hover:text-accentColor duration-300 border-b-2 hover:border-b-2 cursor-pointer border-accentColor pb-2 border-opacity-0 hover:border-opacity-100 hover:pb-1 "
                 >
                   <Link to={item.link}>{item.label}</Link>
                 </li>

@@ -44,11 +44,12 @@ const Login = () => {
           <BForm
             handleFormSubmit={handleForm}
           >
-            <BInput label="Email" name="email" placeholder="Enter your email" />
+            <BInput label="Email" name="email" placeholder="Enter your email" type="email" />
             <BInput
               label="Password"
               name="password"
               placeholder="Enter your password"
+              type="password"
             />
             <BButtonSmall type="submit">Login</BButtonSmall>
           </BForm>
@@ -57,7 +58,7 @@ const Login = () => {
               Don not have an account?{" "}
               <Link
                 className="underline font-medium hover:text-accentColor duration-200"
-                to={"/sign-up"}
+                to={"/signup"}
               >
                 Sign Up
               </Link>

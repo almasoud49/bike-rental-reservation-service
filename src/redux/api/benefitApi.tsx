@@ -1,4 +1,5 @@
-import { baseApi } from "../../api/baseApi";
+import { baseApi } from "./baseApi";
+
 
 const benefitApi = baseApi.injectEndpoints({
     endpoints:(builder) => ({

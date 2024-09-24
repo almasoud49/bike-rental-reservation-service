@@ -39,13 +39,13 @@ const Sidebar = ({ collapsed }: { collapsed: boolean }) => {
         <div className="p-4">
           <NavLink to={`/dashboard/${user?.role}`} className="inline-block">
             <h3 className="md:text-2xl text-xl font-bold uppercase text-primaryColor">
-              <span className="text-accentColor">Ride</span>
+              <span className="text-accentColor">Bike</span>
               <span
                 className={`${
                   collapsed ? "opacity-0" : "opacity-100"
                 } dark:text-gray-300`}
               >
-                flow
+                Rent
               </span>
             </h3>
           </NavLink>

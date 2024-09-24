@@ -1,30 +1,60 @@
-import { useGetAllTeamQuery } from "../../redux/features/team/teamApi";
+import { useGetAllTeamQuery } from "../../redux/api/teamApi";
 import { TTeamMemberData } from "../../types/team.type";
+import { Card, Col, Row, Typography } from "antd";
 
+const { Title, Paragraph } = Typography;
 
 const Team = () => {
-const {data: allTeamMembers} = useGetAllTeamQuery("")
-    return (
-<div className="my-10 rounded shadow-2xl w-auto h-auto p-6  m-6">
-      <h1 className="font-bold  text-2xl">Team</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  const { data: allTeamMembers } = useGetAllTeamQuery("");
+
+  return (
+    <div className="my-10">
+      <Title level={2} className="text-center font-bold">
+        Team
+      </Title>
+      <Row gutter={16} justify="center">
         {allTeamMembers?.data.map((member: TTeamMemberData) => (
-          <div key={member._id} className="bg-gray-100 shadow-2xl rounded p-6 w-auto h-auto">
-            <img 
-              src={member.photo} 
-              alt={member.name} 
-              className="w-32 h-32 rounded-full  object-cover mb-4" 
-            />
-            <div className="card-body">
-              <p className="text-black font-bold">Name: {member.name}</p>
-              <p className="text-black font-bold"> Position: {member.position}</p>
-              <p className="text-black jus"> Bio: {member.bio}</p>
-            </div>
-          </div>
+          <Col
+            key={member._id}
+            xs={24} 
+            sm={12} 
+            lg={8} 
+            style={{ marginBottom: '16px' }} 
+          >
+            <Card
+              hoverable
+              style={{
+                width: '100%',
+                borderRadius: '8px',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)',
+              }}
+            >
+              <img
+                src={member.photo}
+                alt={member.name}
+                style={{
+                  width: '128px',
+                  height: '128px',
+                  borderRadius: '50%',
+                  objectFit: 'cover',
+                  marginBottom: '16px',
+                }}
+              />
+              <Card.Meta
+                title={<strong>{member.name}</strong>}
+                description={
+                  <>
+                    <Paragraph style={{ margin: 0 }}><strong>Position:</strong> {member.position}</Paragraph>
+                    <Paragraph style={{ margin: 0 }}><strong>Bio:</strong> {member.bio}</Paragraph>
+                  </>
+                }
+              />
+            </Card>
+          </Col>
         ))}
-      </div>
+      </Row>
     </div>
-    );
+  );
 };
 
 export default Team;

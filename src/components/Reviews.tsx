@@ -1,30 +1,56 @@
-import { useGetAllReviewsQuery } from "../redux/features/review/reviewApi";
+
+import { useGetAllReviewsQuery } from "../redux/api/reviewApi";
 import { TReviewData } from "../types/review.type";
+import { Card, Row, Col, Typography, Spin } from "antd";
 import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa6";
 
+const { Title, Text } = Typography;
 
 const Reviews = () => {
-    const {data: allReview ,isLoading} = useGetAllReviewsQuery("");
-    console.log(allReview)
-    console.log(isLoading)
+  const { data: allReview, isLoading } = useGetAllReviewsQuery("");
+
+  if (isLoading) {
     return (
-    <div className="my-10">
-      <h1 className="font-bold text-4xl text-center py-6">Testimonials</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
-        {allReview?.data?.map((review: TReviewData) => (
-          <div key={review._id} className="bg-gray-100 rounded p-6 w-auto h-60 shadow-2xl">
-            <div className="card-body">
-            <FaQuoteLeft className="mr-2" />
-                <span className="flex-grow text-black">{review.description}</span>
-                <FaQuoteRight className="ml-2" />
-              <p className="text-black">{review.name}</p>
-              
-            </div>
-          </div>
-        ))}
+      <div style={{ textAlign: 'center', marginTop: '50px' }}>
+        <Spin size="large" />
       </div>
-    </div>
     );
+  }
+
+  return (
+    <div style={{ margin: '40px 0' }}>
+      <Title level={1} style={{ textAlign: 'center', marginBottom: '24px' }}>
+        Testimonials
+      </Title>
+      <Row gutter={[16, 16]}>
+        {allReview?.data?.map((review: TReviewData) => (
+          <Col key={review._id} xs={24} sm={12} lg={8}>
+            <Card
+              bordered={false}
+              style={{
+                background: '#f0f0f0',
+                height: '240px',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                padding: '20px',
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <FaQuoteLeft style={{ marginRight: '8px', fontSize: '24px', color: '#1890ff' }} />
+                <span style={{ flexGrow: 1, color: '#000' }}>{review.description}</span>
+                <FaQuoteRight style={{ marginLeft: '8px', fontSize: '24px', color: '#1890ff' }} />
+              </div>
+              <Text strong style={{ marginTop: 'auto', textAlign: 'right', color: '#000' }}>
+                {review.name}
+              </Text>
+            </Card>
+          </Col>
+        ))}
+      </Row>
+    </div>
+  );
 };
 
 export default Reviews;

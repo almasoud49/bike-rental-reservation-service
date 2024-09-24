@@ -5,7 +5,7 @@ type TInputProps = {
   name: string;
   label?: string;
   placeholder?: string;
-  type?: "text" | "number";
+  type?: "text" | "number" | "password" | "email";
   disabled?: boolean;
   colSpanLg?: number;
   colSpanMd?: number;
