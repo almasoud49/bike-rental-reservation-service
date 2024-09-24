@@ -34,7 +34,7 @@ const MyRentals = () => {
     toast.success("🎉 Rental Confirmed!");
     setTimeout(() => {
       window.location.replace(
-        "https://bike-rent-reservation-system.netlify.app/dashboard/user/my-rentals"
+        "https://bike-rental-reservation-service.vercel.app/dashboard/user/my-rentals"
       );
     }, 1200);
   }
